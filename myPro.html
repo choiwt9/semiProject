@@ -22,15 +22,27 @@ body{text-align: center;}
     }
 
     form {
-    display: inline-block; 
+        display: flex; /* Flexbox를 사용하여 가로로 배치 */
+        align-items: center; /* 요소들을 수직 가운데 정렬 */
+        justify-content: center; /* 요소들을 수평 가운데 정렬 */
+        gap: 10px; /* 요소들 간의 간격 설정 */
 }
+    .search-group {
+            display: flex; /* 검색 입력창과 버튼을 하나의 그룹으로 만듦 */
+            align-items: center;}
+
+     #search, button {
+            background-color: white;
+            height: 20px; /* 동일한 높이 지정 */
+            box-sizing: border-box; /* padding과 border를 포함해 크기 조절 */
+            }
 
      #search{
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
             display: inline-block;  
             margin: 0;
-            height: 15px;
+            border-right: none;
         }
 
      button{
@@ -40,6 +52,7 @@ body{text-align: center;}
             display: inline-block;
             margin: 0;
             padding: 0 10px;
+            border-left: none;
          }
     </style>
 </head>
@@ -70,10 +83,19 @@ body{text-align: center;}
 
     </div>
 <form action="">
+    <div class="search-group">
     <input type="text" id="search" placeholder="value"><button>검색</button> 
-    
-
-    
+    </div> 
+    <div class="pagination">
+        <a href="#">&laquo;</a>  <!-- Previous page button -->
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>  <!-- Next page button -->
+    </div>
     <input type="button" value="글쓰기">
 </form>
 </body>

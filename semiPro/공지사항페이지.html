@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{text-align: center;}
+
+    table{
+        border-spacing: 30px;
+       width: 70%;
+       height: 100%;
+       margin: auto;
+    }
+
+   tr{background-color: rgb(222, 165, 230);}
+        
+    td{
+         width: 200px;
+         height: 40px;
+         min-width: 40px;
+    }
+
+    form {
+        display: flex; /* Flexbox를 사용하여 가로로 배치 */
+        align-items: center; /* 요소들을 수직 가운데 정렬 */
+        justify-content: center; /* 요소들을 수평 가운데 정렬 */
+        gap: 10px; /* 요소들 간의 간격 설정 */
+}
+    .search-group {
+            display: flex; /* 검색 입력창과 버튼을 하나의 그룹으로 만듦 */
+            align-items: center;}
+    
+     #search, button{
+            background-color: white;
+            height: 26px; /* 동일한 높이 지정 */
+            box-sizing: border-box; /* padding과 border를 포함해 크기 조절 */
+            position: relative;
+            }
+
+     #search{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            display: inline-block;  
+            border-right: none;
+        }
+     #numbers{ margin: 50px;}
+
+     button{ position: relative;
+            margin-left: 0px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px; 
+            display: inline-block;
+            padding: 0 10px;
+            border-left: none;
+         }
+         img{width: 15px;
+              height: 15px;
+            cursor: pointer;
+             }
+    </style>
+</head>
+<body >
+    <h3 >공지사항</h3>
+
+
+    <div class="gong">
+       <table>
+        <tr>
+            <td><a href="">제목1</a></td>
+            <td><a href="">제목2</a></td>
+        </tr>
+        <tr>
+            <td><a href="">제목3</a></td>
+            <td><a href="">제목4</a></td>
+        </tr>
+        <tr>
+            <td><a href="">제목5</a></td>
+            <td><a href="">제목6</a></td>
+        </tr>
+        <tr>
+            <td><a href="">제목7</a></td>
+            <td><a href="">제목8</a></td>
+        </tr>
+
+        </table>
+
+    </div>
+<form action="">
+    <div class="search-group">
+    <input type="text" id="search" placeholder="value"><button><img src="free-icon-magnifier-2311526.png" ></button> 
+    </div> 
+    <div class="pagination" id="numbers">
+        <a href="#">&laquo; previous</a>  <!-- Previous page button -->
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>  <!-- Next page button -->
+    </div>
+    <input type="button" value="글쓰기" id="gle">
+</form>
+</body>
+</html>

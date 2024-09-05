@@ -33,6 +33,17 @@
             width: 100%;
             height: 500px;
         }
+        .file-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .file-info strong {
+            margin-right: 10px;
+        }
+        .file-info .fileDownload img {
+            vertical-align: middle;
+        }
     </style>
 
 </head>
@@ -40,19 +51,57 @@
     <h3 align="center">공지사항</h3>
 <fieldset>
 <div class="header">
-<p>제목</p>
-<p>게시일</p>
+<p id="title"></p>
+<p id="date"></p>
 </div>
 <hr>
-
-<strong>첨부파일</strong>  | 첨부파일 다운로드 <button><img src="free-icon-download-130905.png" ></button>
+<div class="file-info">
+<strong>첨부파일</strong>  | 첨부파일 다운로드  
+<div class="fileDownload" id="fileDownload">
+   
+</div>
+</div>
 <hr>
-<div class="gongjigle">
+<div class="gongjigle" id="gongjigle">
 
 </div>
 
 </fieldset>
+<script>
+  const savedTitle = localStorage.getItem("savedTitle");   
+ const savedContent = localStorage.getItem("savedContent");
+  const savedDate = localStorage.getItem("savedDate");
+  const savedFile = localStorage.getItem("savedFile");
 
+
+// 가져온 내용을 gongjigle div에 표시
+if (savedTitle) {
+    document.getElementById("title").textContent = savedTitle;
+} else {
+    document.getElementById("title").textContent = "제목이 없습니다.";
+}
+
+if (savedDate) {
+    document.getElementById("date").textContent = savedDate;
+} else {
+    document.getElementById("date").textContent = "날짜가 없습니다.";
+}
+
+if (savedFile) {
+   const downloadLink = document.createElement('a');
+            downloadLink.href = savedFile;
+            downloadLink.download = '첨부파일'; // 다운로드할 파일의 이름
+            downloadLink.innerHTML  = '<img src="/free-icon-download-130905.png" alt="">';
+            document.getElementById("fileDownload").appendChild(downloadLink);
+}
+
+
+if (savedContent) {
+    document.getElementById("gongjigle").textContent = savedContent;
+} else {
+    document.getElementById("gongjigle").textContent = "내용이 없습니다.";
+}
+</script>
    
 </body>
 </html>

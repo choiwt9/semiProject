@@ -14,10 +14,25 @@
         height: 400px;
        }
 
-       button{}
+       .button-container {
+        display: flex;
+        justify-content: flex-end; 
+        margin: 10px;
+      }
+      #delBtn, #upBtn{
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        font-size: 20px;
+        background-color: cadetblue;
+      }
+
+
     </style>
 </head>
 <body>
+    <h3 align="center" >공지사항</h3>
+
     <fieldset>
 제목
 <hr>
@@ -34,8 +49,11 @@
         <hr>
         <textarea id="content"></textarea>
     </fieldset>
+    <div class="button-container">
+      <button id="delBtn">취소</button>
 
-    <button onclick="saveContent()">공지 업로드</button>
+      <button id="upBtn" onclick="saveContent()">저장</button>
+    </div>
     <script>
         let fileURL = '';
 

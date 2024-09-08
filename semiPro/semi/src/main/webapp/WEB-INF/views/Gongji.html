@@ -5,7 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="\semi\src\main\webapp\WEB-INF\views\forGongji.css">
+    <style>
+        h3{text-align: center;}
+
+table{
+    border-spacing: 30px;
+   width: 700px;
+   height: 100%;
+   margin: auto;
+   
+}
+
+tr{background-color: rgb(222, 165, 230);}
     
+td{
+     width: 200px;
+     height: 60px;
+     min-width: 40px;
+     border-radius: 10px; 
+}
+
+form {
+    display: flex; /* Flexbox를 사용하여 가로로 배치 */
+    align-items: center; /* 요소들을 수직 가운데 정렬 */
+    justify-content: center; /* 요소들을 수평 가운데 정렬 */
+    gap: 10px; /* 요소들 간의 간격 설정 */
+}
+.search-group {
+        display: flex; /* 검색 입력창과 버튼을 하나의 그룹으로 만듦 */
+        align-items: center;}
+
+ #search, button{
+        background-color: white;
+        height: 40px; /* 동일한 높이 지정 */
+        box-sizing: border-box; /* padding과 border를 포함해 크기 조절 */
+        position: relative;
+        }
+
+ #search{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        display: inline-block;  
+        border-right: none;
+    }
+ #numbers{ margin: 50px;
+           display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;  /* 한 줄로 유지 */
+            gap: 10px; /* 페이지네이션 버튼 간의 간격 */
+            white-space: nowrap;
+           
+       
+ }
+a{  
+    font-size: larger;
+    color: black;
+    margin: 10px;
+    border-radius: 5px;
+       
+ }
+
+ #numbers>a:hover{
+    background-color: black;
+    color: white;
+ }
+ button{ position: relative;
+        margin-left: 0px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px; 
+        display: inline-block;
+        padding: 0 10px;
+        border-left: none;
+     }
+     img{width: 15px;
+          height: 15px;
+        cursor: pointer;
+         }
+         #gle{
+            width: 60px;
+            height: 40px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body >
     <h3 >공지사항</h3>
@@ -14,20 +95,20 @@
     <div class="gong">
        <table>
         <tr>
-            <td><a href="">제목1</a></td>
-            <td><a href="">제목2</a></td>
+            <td><a href="">제목1</a><br><span class="content">내용1</span></td>
+            <td><a href="">제목2</a><br><span class="content">내용2이 길어서 자동으로 잘려 표시될 부분입니다. 이 부분은 설명이 매우 길지만, 그 중 일부만 보여주게 됩니다. 긴 글을 모두 보여줄 수는 없으니 잘라서 표시하게 됩니다.</span></td>
         </tr>
         <tr>
-            <td><a href="">제목3</a></td>
-            <td><a href="">제목4</a></td>
+            <td><a href="">제목3</a><br><span class="content">내용3</span></td>
+            <td><a href="">제목4</a><br><span class="content">내용4</span></td>
         </tr>
         <tr>
-            <td><a href="">제목5</a></td>
-            <td><a href="">제목6</a></td>
+            <td><a href="">제목5</a><br><span class="content">내용5</span></td>
+            <td><a href="">제목6</a><br><span class="content">내용6</span></td>
         </tr>
         <tr>
-            <td><a href="">제목7</a></td>
-            <td><a href="">제목8</a></td>
+            <td><a href="">제목7</a><br><span class="content">내용7</span></td>
+            <td><a href="">제목8</a><br><span class="content">내용8</span></td>
         </tr>
 
         </table>
@@ -49,5 +130,26 @@
     </div>
     <input type="button" value="글쓰기" id="gle">
 </form>
+<script>
+    // 너무 긴 내용을 잘라내고 ...을 붙이는 함수
+    function shortenContent(content, maxLength) {
+        if (content.length > maxLength) {
+            return content.substring(0, maxLength) + "...";
+        } else {
+            return content;
+        }
+    }
+
+    // 모든 내용 span 요소에 대해 내용을 100자로 제한
+    const contents = document.querySelectorAll(".content");
+    contents.forEach(function(contentElement) {
+        const originalText = contentElement.textContent;
+        const shortenedText = shortenContent(originalText, 20);
+        contentElement.textContent = shortenedText;
+    });
+</script>
+
+
+
 </body>
 </html>

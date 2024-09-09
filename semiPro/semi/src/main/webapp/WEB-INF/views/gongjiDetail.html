@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>공지상세</title>
     
     <style>
      fieldset{
@@ -68,17 +68,23 @@ img{ width: 15px;
 
 </fieldset>
 <script>
+function getIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');  // URL에서 id 파라미터 추출
+}
    const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
-        const latestAnnouncement = announcements[announcements.length - 1];  // 최신 공지사항
+   const id = getIdFromUrl(); // URL에서 추출한 id
 
-        if (latestAnnouncement) {
-            document.getElementById("title").textContent = latestAnnouncement.title;
-            document.getElementById("date").textContent = latestAnnouncement.date;
-            document.getElementById("gongjigle").textContent = latestAnnouncement.content;
+   const announcement = announcements.find(item => item.id == id);
+   
+        if (announcement) {
+            document.getElementById("title").textContent = announcement.title;
+            document.getElementById("date").textContent = announcement.date;
+            document.getElementById("gongjigle").textContent = announcement.content;
 
-            if (latestAnnouncement.file) {
+            if (announcement.file) {
                 const downloadLink = document.createElement('a');
-                downloadLink.href = latestAnnouncement.file;
+                downloadLink.href = announcement.file;
                 downloadLink.download = '첨부파일'; 
                 downloadLink.innerHTML = '첨부파일 있음<img src="/free-icon-download-130905.png" alt="">';
                 document.getElementById("fileDownload").appendChild(downloadLink);

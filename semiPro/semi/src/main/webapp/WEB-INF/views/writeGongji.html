@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>공지작성</title>
     <style>
 
         fieldset{width:800px;}
@@ -78,9 +78,11 @@
             const title = document.getElementById("title").value;
             const content = document.getElementById("content").value;
             const currentDate  = new Date().toLocaleDateString();
+            const id = Date.now(); 
 
             let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
             announcements.push({
+                id: id,
                 title: title,
                 content: content,
                 date: currentDate,
@@ -90,7 +92,7 @@
 
 
             // 공지 상세페이지로 이동
-            window.location.href = "gongjiDetail.html"; 
+            window.location.href = 'gongjiDetail.html?id=${id}'; 
         }
         function delContent(){
             localStorage.clear();

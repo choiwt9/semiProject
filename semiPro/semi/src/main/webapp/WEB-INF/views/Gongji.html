@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>공지목록</title>
     
     
     <style>
@@ -125,8 +125,8 @@ const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
             const link = document.createElement("a");
             const content = document.createElement("span");
 
-            link.href = "#";  // 상세보기 페이지 링크 설정
-            link.textContent = `제목${index + 1}: ${announcement.title}`;
+            link.href = "gongjiDetail.html?id=${announcement.id}";  // 상세보기 페이지 링크 설정
+            link.textContent = `${announcement.title}`;
             content.className = "content";
             content.textContent = shortenContent(announcement.content, 20);  // 내용 짧게 표시
 

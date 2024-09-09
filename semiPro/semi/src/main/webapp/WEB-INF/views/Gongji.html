@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="\semi\src\main\webapp\WEB-INF\views\forGongji.css">
+    
+    
     <style>
         h3{text-align: center;}
 
@@ -93,34 +94,17 @@ a{
 
 
     <div class="gong">
-       <table>
-        <tr>
-            <td><a href="">제목1</a><br><span class="content">내용1</span></td>
-            <td><a href="">제목2</a><br><span class="content">내용2이 길어서 자동으로 잘려 표시될 부분입니다. 이 부분은 설명이 매우 길지만, 그 중 일부만 보여주게 됩니다. 긴 글을 모두 보여줄 수는 없으니 잘라서 표시하게 됩니다.</span></td>
-        </tr>
-        <tr>
-            <td><a href="">제목3</a><br><span class="content">내용3</span></td>
-            <td><a href="">제목4</a><br><span class="content">내용4</span></td>
-        </tr>
-        <tr>
-            <td><a href="">제목5</a><br><span class="content">내용5</span></td>
-            <td><a href="">제목6</a><br><span class="content">내용6</span></td>
-        </tr>
-        <tr>
-            <td><a href="">제목7</a><br><span class="content">내용7</span></td>
-            <td><a href="">제목8</a><br><span class="content">내용8</span></td>
-        </tr>
-
-        </table>
+        <table id="announcementTable"></table>
+     </div>
 
     </div>
 <form action="">
     <div class="search-group">
-    <input type="text" id="search" placeholder="value"><button><img src="/free-icon-magnifier-2311526.png" ></button> 
+    <input type="text" id="search" placeholder="검색"><button><img src="/free-icon-magnifier-2311526.png" ></button> 
     </div> 
     <div class="pagination" id="numbers">
         <a href="#">&laquo; previous</a>  <!-- Previous page button -->
-        <a href="#" class="active">1</a>
+        <a href="#" class="active" >1</a>
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">....</a>
@@ -131,6 +115,27 @@ a{
     <input type="button" value="글쓰기" id="gle">
 </form>
 <script>
+
+const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+        const table = document.getElementById("announcementTable");
+
+        announcements.forEach((announcement, index) => {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            const link = document.createElement("a");
+            const content = document.createElement("span");
+
+            link.href = "#";  // 상세보기 페이지 링크 설정
+            link.textContent = `제목${index + 1}: ${announcement.title}`;
+            content.className = "content";
+            content.textContent = shortenContent(announcement.content, 20);  // 내용 짧게 표시
+
+            cell.appendChild(link);
+            cell.appendChild(document.createElement("br"));
+            cell.appendChild(content);
+            row.appendChild(cell);
+            table.appendChild(row);
+        });
     // 너무 긴 내용을 잘라내고 ...을 붙이는 함수
     function shortenContent(content, maxLength) {
         if (content.length > maxLength) {
@@ -140,13 +145,16 @@ a{
         }
     }
 
-    // 모든 내용 span 요소에 대해 내용을 100자로 제한
+    // 모든 내용 span 요소에 대해 내용을 20자로 제한
     const contents = document.querySelectorAll(".content");
     contents.forEach(function(contentElement) {
         const originalText = contentElement.textContent;
         const shortenedText = shortenContent(originalText, 20);
         contentElement.textContent = shortenedText;
     });
+
+
+    
 </script>
 
 

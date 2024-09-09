@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="\semi\src\main\webapp\WEB-INF\views\forGongjidetail.css">
+    
     <style>
-      fieldset{
+     fieldset{
     border-radius: 10px;
 }
 
@@ -68,39 +68,24 @@ img{ width: 15px;
 
 </fieldset>
 <script>
-  const savedTitle = localStorage.getItem("savedTitle");   
- const savedContent = localStorage.getItem("savedContent");
-  const savedDate = localStorage.getItem("savedDate");
-  const savedFile = localStorage.getItem("savedFile");
+   const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+        const latestAnnouncement = announcements[announcements.length - 1];  // 최신 공지사항
 
+        if (latestAnnouncement) {
+            document.getElementById("title").textContent = latestAnnouncement.title;
+            document.getElementById("date").textContent = latestAnnouncement.date;
+            document.getElementById("gongjigle").textContent = latestAnnouncement.content;
 
-// 가져온 내용을 gongjigle div에 표시
-if (savedTitle) {
-    document.getElementById("title").textContent = savedTitle;
-} else {
-    document.getElementById("title").textContent = "제목이 없습니다.";
-}
-
-if (savedDate) {
-    document.getElementById("date").textContent = savedDate;
-} else {
-    document.getElementById("date").textContent = "날짜가 없습니다.";
-}
-
-if (savedFile) {
-   const downloadLink = document.createElement('a');
-            downloadLink.href = savedFile;
-            downloadLink.download = '첨부파일'; // 다운로드할 파일의 이름
-            downloadLink.innerHTML  = '<img src="/free-icon-download-130905.png" alt="">';
-            document.getElementById("fileDownload").appendChild(downloadLink);
-}
-
-
-if (savedContent) {
-    document.getElementById("gongjigle").textContent = savedContent;
-} else {
-    document.getElementById("gongjigle").textContent = "내용이 없습니다.";
-}
+            if (latestAnnouncement.file) {
+                const downloadLink = document.createElement('a');
+                downloadLink.href = latestAnnouncement.file;
+                downloadLink.download = '첨부파일'; 
+                downloadLink.innerHTML = '첨부파일 있음<img src="/free-icon-download-130905.png" alt="">';
+                document.getElementById("fileDownload").appendChild(downloadLink);
+            }
+        } else {
+            document.getElementById("title").textContent = "공지사항이 없습니다.";
+        }
 </script>
    
 </body>

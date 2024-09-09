@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        fieldset{width:800px;}
         #title{
             width: 100%;
             border: none;
@@ -52,10 +54,11 @@
         <textarea id="content"></textarea>
     </fieldset>
     <div class="button-container">
-      <button id="delBtn">취소</button>
+      <button id="delBtn" onclick="delContent()">취소</button>
 
       <button id="upBtn" onclick="saveContent()">저장</button>
     </div>
+
     <script>
         let fileURL = '';
 
@@ -70,18 +73,28 @@
         reader.readAsDataURL(file);
     }
 }
+
         function saveContent() {
             const title = document.getElementById("title").value;
             const content = document.getElementById("content").value;
             const currentDate  = new Date().toLocaleDateString();
 
-            localStorage.setItem("savedTitle", title);
-            localStorage.setItem("savedContent", content);
-            localStorage.setItem("savedDate", currentDate);
-            localStorage.setItem("savedFile", fileURL);
+            let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+            announcements.push({
+                title: title,
+                content: content,
+                date: currentDate,
+                file: fileURL
+            });
+            localStorage.setItem("announcements", JSON.stringify(announcements));
+
 
             // 공지 상세페이지로 이동
             window.location.href = "gongjiDetail.html"; 
+        }
+        function delContent(){
+            localStorage.clear();
+            window.location.href = "gongji.html"
         }
     </script>
 </body>
